@@ -1,0 +1,9 @@
+.table.table-default{
+    text-align: center;
+}
+
+.button-stored{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 35px;
+}
