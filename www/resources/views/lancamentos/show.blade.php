@@ -10,31 +10,37 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Boleta</label>
-                    <input type="text" class="form-control" placeholder="Nome da Loja" name="boleta" value="{{$lancamento['boleta']}}" required>
+                    <input type="text" class="form-control" placeholder="Boleta" name="boleta" value="{{$lancamento['boleta']}}" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Romaneio</label>
-                    <input type="text" class="form-control" placeholder="Nome da Loja" name="romaneio" value="{{$lancamento['romaneio']}}" required>
+                    <input type="text" class="form-control" placeholder="Romaneio" name="romaneio" value="{{$lancamento['romaneio']}}" required>
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-md-4 mb-3">
+                <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Data de Compra</label>
-                    <input type="text" class="form-control" id="data_compra_store" placeholder="Nome da Loja" name="data_compra" value="{{$lancamento['data_compra']}}" required>
+                    <input type="text" class="form-control" id="data_compra_store" placeholder="Data da Compra" name="data_compra" value="{{$lancamento['data_compra']}}" required>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Data de Vencimento</label>
-                    <input type="text" class="form-control" id="data_vencimento_store" placeholder="Nome da Loja" name="data_vencimento" value="{{$lancamento['data_vencimento']}}" required>
+                    <input type="text" class="form-control" id="data_vencimento_store" placeholder="Data de vencimento" name="data_vencimento" value="{{$lancamento['data_vencimento']}}" required>
                 </div>
-                <div class="col-md-4 mb-3">
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Valor</label>
-                    <input type="text" class="form-control js--valor" placeholder="Nome da Loja" name="valor" value="R${{number_format($lancamento['valor'],2,",",".")}}" required>
+                    <input type="text" class="form-control js--valor" placeholder="Valor" name="valor" value="R${{number_format($lancamento['valor'],2,",",".")}}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="validationCustom03">Comissão</label>
+                    <input type="text" disabled class="form-control" placeholder="Comissão" value="R${{number_format($lancamento['valor'] * ($lancamento['loja_comissao']/100),2,",",".")}}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Cliente</label>
-                    <input type="text" class="form-control" placeholder="Nome da Loja" name="cliente" value="{{$lancamento['cliente']}}" required>
+                    <input type="text" class="form-control" placeholder="Nome do(a) Cliente" name="cliente" value="{{$lancamento['cliente']}}" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Loja</label>

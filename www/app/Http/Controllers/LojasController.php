@@ -20,7 +20,6 @@ class LojasController extends Controller
                 'Accept' => 'application/json'
                 ]
         ])->getBody()->getContents(), true);
-
         return view('lojas.lojas', ['lojas' => $lojas['data']]);
     }
 
@@ -49,7 +48,7 @@ class LojasController extends Controller
                 'Accept' => 'application/json'
                 ]
         ])->getBody()->getContents(), true);
-        
+
         return view('lojas.show', ['loja' => $loja['data']]);
     }
 
@@ -62,7 +61,7 @@ class LojasController extends Controller
             ],
             'form_params' => $request->validated()
         ])->getBody()->getContents(), true);
-            
+
         return redirect()->route('loja.show', ['loja_uuid' => $loja_uuid]);
     }
 
@@ -74,7 +73,7 @@ class LojasController extends Controller
                 'Accept' => 'application/json'
                 ]
         ])->getBody()->getContents(), true);
-        
+
         return response($loja);
     }
 }

@@ -219,6 +219,12 @@ return [
             'can'  => 'manage-blog',
         ], */
         [
+            'text' => 'Início',
+            'url' => '/',
+            'icon' => 'fas fa-home',
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'Lojas',
             'url'         => 'lojas',
             'icon'        => 'fas fa-store',
@@ -232,18 +238,18 @@ return [
             /* 'label'       => 4, */
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Configurações da conta'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Minha conta',
+            'url'  => 'minha-conta',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Administradores',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        [
+/*         [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -280,19 +286,12 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ],*/
+        ['header' => ''],
         [
-            'text'       => 'important',
+            'text'       => 'Sair',
+            'url'        => 'sair',
             'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'aqua',
         ],
     ],
 

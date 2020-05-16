@@ -25,6 +25,10 @@ Route::get('/sair', function(){
 Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCredentials.Lancamento']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
+    Route::group(['prefix' => 'minha-conta'], function () {
+        Route::get('/', 'CustomerController@index');
+    });
+
     Route::group(['prefix' => 'lojas'], function () {
         Route::get('/', 'LojasController@index')->name('lojas.index');
         Route::get('/nova-loja', 'LojasController@viewNew')->name('lojas.viewnew');
@@ -32,7 +36,7 @@ Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCre
         Route::group(['prefix' => '{loja_uuid}'], function () {
             Route::put('/', 'LojasController@update')->name('loja.update');
             Route::get('/', 'LojasController@show')->name('loja.show');
-            Route::delete('/', 'LojasController@delete')->name('loja.delete'); 
+            Route::delete('/', 'LojasController@delete')->name('loja.delete');
         });
     });
 
@@ -44,7 +48,7 @@ Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCre
             Route::group(['prefix' => '{lancamento_uuid}'], function () {
                 Route::get('/', 'LancamentosController@show')->name('lancamento.show');
                 Route::put('/', 'LancamentosController@update')->name('lancamento.update');
-                Route::delete('/', 'LancamentosController@delete')->name('lancamento.delete'); 
+                Route::delete('/', 'LancamentosController@delete')->name('lancamento.delete');
             });
         });
     });
