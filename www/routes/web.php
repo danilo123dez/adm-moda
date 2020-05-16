@@ -22,11 +22,18 @@ Route::get('/sair', function(){
     return redirect()->route('login.index');
 });
 
-Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCredentials.Lancamento']], function () {
+Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCredentials.Lancamento', 'checkCredentials.Customer']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::group(['prefix' => 'minha-conta'], function () {
-        Route::get('/', 'CustomerController@index');
+        Route::get('/', 'CustomerController@index')->name('minha.conta.index');
+        Route::group(['prefix' => '{customer_uuid}'], function () {
+            Route::put('/', 'CustomerController@update')->name('minha.conta.update');
+        });
+    });
+
+    Route::group(['prefix' => 'administradores'], function () {
+        Route::get('/', 'AdminController@index');
     });
 
     Route::group(['prefix' => 'lojas'], function () {

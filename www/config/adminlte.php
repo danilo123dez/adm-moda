@@ -246,7 +246,7 @@ return [
         ],
         [
             'text' => 'Administradores',
-            'url'  => 'admin/settings',
+            'url'  => 'administradores',
             'icon' => 'fas fa-fw fa-lock',
         ],
 /*         [
@@ -291,7 +291,7 @@ return [
         [
             'text'       => 'Sair',
             'url'        => 'sair',
-            'icon_color' => 'red',
+            'icon'       => 'fas fa-sign-out-alt',
         ],
     ],
 

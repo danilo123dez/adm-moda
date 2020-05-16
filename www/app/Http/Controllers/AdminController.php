@@ -6,19 +6,18 @@ use App\Traits\RequestTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     use RequestTrait;
 
     public function index(){
         $customer_uuid = Session::get('customer')['uuid'];
-        $lancamentos = json_decode($this->guzzle->request('GET',"lancamentos/$customer_uuid/semana", [
+        $admins = json_decode($this->guzzle->request('GET',"customers/$customer_uuid/admin", [
             'headers' => [
-                'Authorization' => "Bearer " . Session::get('access_token_lancamento'),
+                'Authorization' => "Bearer " . Session::get('access_token_customer'),
                 'Accept' => 'application/json'
                 ]
         ])->getBody()->getContents(), true);
-
-        return view('home', ['lancamentos' => $lancamentos['data']]);
+        return view('admin.admin', ['admins' => $admins['data']] );
     }
 }
