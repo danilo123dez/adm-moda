@@ -2,14 +2,14 @@
     var table = $('.js--lojas-index-table').DataTable({
         retrieve: true,
         scrollX: false,
-        "columns": [         
+        "info": false,
+        "columns": [
             null,
             null,
             { "orderable": false }
         ],
         "lengthChange": false,
         "language": {
-            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
             "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
             "sSearch": "Pesquisar: ",
             "zeroRecords": "Nenhum registro encontrado.",
@@ -41,12 +41,12 @@
           cancelButtonText: 'Cancelar'
         }).then((result) => {
           if (result.value) {
-  
+
             let xhr = new XMLHttpRequest();
             xhr.open('DELETE', link_delete);
             xhr.setRequestHeader('X-CSRF-TOKEN', token);
             xhr.send();
-  
+
             xhr.onload = function() {
               if (xhr.status != 200) {
                 Swal.fire(
@@ -75,7 +75,7 @@
                 }
               }
             };
-  
+
             xhr.onerror = function() {
               Swal.fire(
                 'Houve um erro inesperado ao apagar o lançamento!',
@@ -83,7 +83,7 @@
                 'error'
               )
             };
-            
+
           }
         })
       });

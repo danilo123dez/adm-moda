@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCre
 
     Route::group(['prefix' => 'lancamentos'], function () {
         Route::get('/', 'LancamentosController@index')->name('lancamentos.index');
+        Route::post('/', 'LancamentosController@search')->name('lancamentos.search');
         Route::get('/novo-lancamento', 'LancamentosController@viewNew')->name('lancamentos.viewnew');
         Route::post('/novo-lancamento', 'LancamentosController@store')->name('lancamentos.store');
         Route::group(['prefix' => '{loja_uuid}'], function () {
