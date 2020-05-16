@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function login(Request $request){
         try{
             $response = $this->sendDataLogin($request->email, $request->password);
-            
+
             if($response['status'] !== 200){
                 session()->flash('login_failed', true);
                 return redirect()->back()->withInput();
@@ -32,6 +32,7 @@ class LoginController extends Controller
                     'Accept' => 'application/json'
                     ]
             ])->getBody()->getContents(), true);
+
             Session::put('customer', $user['data']);
 
             return redirect()->route('home');
