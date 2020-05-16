@@ -9,16 +9,16 @@ trait RequestTrait{
     public $guzzle = '';
 
     public function __construct(){
-        $this->guzzle = new \GuzzleHttp\Client(['http_errors' => false,'base_uri' =>  getenv('API_URL')]);
+        $this->guzzle = new \GuzzleHttp\Client(['http_errors' => false,'base_uri' =>  config('credentials.API_URL')]);
     }
 
     public function sendDataLogin($email, $password){
-       $http = new \GuzzleHttp\Client(['http_errors' => false,'base_uri' =>  getenv('OAUTH_URL') ]);
+       $http = new \GuzzleHttp\Client(['http_errors' => false,'base_uri' =>  config('credentials.OAUTH_URL') ]);
        $http = $http->request('POST','', [
             'form_params' => [
                 'grant_type' => 'password',
-                'client_id' => getenv('CLIENT_ID_PASS'),
-                'client_secret' => getenv('CLIENT_SECRET_PASS'),
+                'client_id' => config('credentials.CLIENT_ID_PASS'),
+                'client_secret' => config('credentials.CLIENT_SECRET_PASS'),
                 'username' => $email,
                 'password' => $password
             ]
@@ -32,12 +32,12 @@ trait RequestTrait{
     }
 
     public function accessTokensSpecifics($scope){
-        $http = new \GuzzleHttp\Client(['http_errors' => false,'base_uri' =>  getenv('OAUTH_URL') ]);
+        $http = new \GuzzleHttp\Client(['http_errors' => false,'base_uri' =>  config('credentials.OAUTH_URL') ]);
         $http = $http->request('POST','', [
              'form_params' => [
                  'grant_type' => 'client_credentials',
-                 'client_id' => getenv('CLIENT_ID'),
-                 'client_secret' => getenv('CLIENT_SECRET'),
+                 'client_id' => config('credentials.CLIENT_ID'),
+                 'client_secret' => config('credentials.CLIENT_SECRET'),
                  'scope' => (string)$scope
              ]
          ]);
