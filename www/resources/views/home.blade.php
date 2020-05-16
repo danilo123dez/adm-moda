@@ -47,7 +47,7 @@
         @if(!empty($lancamentos))
             <div class="info-lancamento">
                 <div class="botao-imprimir">
-                    <button class="btn btn-primary imprimir-lancamento">Imprimir</button>
+                    <a href="{{ route('home') }}?download=true" class="btn btn-primary imprimir-lancamento">Imprimir</a>
                 </div>
                 <div class="info-faturamento">
                     <span>

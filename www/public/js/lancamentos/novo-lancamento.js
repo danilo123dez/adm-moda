@@ -11,7 +11,7 @@
         timepicker: false,
         autoclose: true
     });
-    
+
     $('#lojas-disponiveis').select2();
 
     $(".js--valor").maskMoney({

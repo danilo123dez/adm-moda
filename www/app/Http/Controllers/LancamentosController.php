@@ -7,20 +7,48 @@ use App\Traits\RequestTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests\LancamentoStore;
 use Illuminate\Support\Facades\Session;
-
+use App\Exports\LancamentosExport;
+use Maatwebsite\Excel\Facades\Excel;
 class LancamentosController extends Controller
 {
     use RequestTrait;
-    public function index(){
+    public function index($request = null){
         $customer_uuid = Session::get('customer')['uuid'];
+        $request instanceof Request ? $arr_pesquisa = $request->all() : $arr_pesquisa = [];
         $lancamentos = json_decode($this->guzzle->request('GET',"lancamentos/$customer_uuid", [
             'headers' => [
                 'Authorization' => "Bearer " . Session::get('access_token_lancamento'),
-                'Accept' => 'application/json'
-                ]
+            ],
+            'query' => $arr_pesquisa
         ])->getBody()->getContents(), true);
-        
-        return view('lancamentos.lancamentos', ['lancamentos' => $lancamentos['data']]);
+
+        $tipos_pesquisa = [
+            'T' => 'Selecione um tipo',
+            'boleta' => 'Boleta',
+            'romaneio' => 'Romaneio',
+            'cliente' => 'Nome do(a) cliente',
+            'nome_loja' => 'Nome do(a) loja',
+            'data_compra' => 'Data de compra',
+            'data_vencimento' => 'Data de vencimento'
+        ];
+
+        if(!empty($arr_pesquisa['download']) && $arr_pesquisa['download'] && !empty($lancamentos['data'])){
+            $data = [];
+            $data['lancamentos'] = $lancamentos['data'];
+            $data['nome_empresa'] = Session::get('customer')['nome_empresa'];
+
+            $admins = json_decode($this->guzzle->request('GET',"customers/$customer_uuid/admin", [
+                'headers' => [
+                    'Authorization' => "Bearer " . Session::get('access_token_customer'),
+                    'Accept' => 'application/json'
+                    ]
+            ])->getBody()->getContents(), true);
+            $data['admins'] = $admins['data'];
+
+            return Excel::download(new LancamentosExport($data), 'relatorio-'.date('m-Y').'.xlsx');
+        }
+
+        return view('lancamentos.lancamentos', ['lancamentos' => $lancamentos['data'], 'tipos_pesquisa' => $tipos_pesquisa, 'arr_pesquisa' => $arr_pesquisa]);
     }
 
     public function viewNew(){
@@ -33,6 +61,10 @@ class LancamentosController extends Controller
         ])->getBody()->getContents(), true);
 
         return view('lancamentos.novo-lancamento', ['lojas' => $lojas['data']]);
+    }
+
+    public function search(Request $request){
+        return $this->index($request);
     }
 
     public function  store(LancamentoStore $request){
@@ -84,7 +116,7 @@ class LancamentosController extends Controller
         $valor = str_replace('.', '', $valor);
         $valor = str_replace(',', '.', $valor);
         $inputs_validated['valor'] = (float)$valor;
-        
+
         $lancamento = json_decode($this->guzzle->request('PUT',"lancamentos/$customer_uuid/$loja_uuid/$lancamento_uuid", [
             'headers' => [
                 'Authorization' => "Bearer " . Session::get('access_token_lancamento'),
@@ -92,7 +124,7 @@ class LancamentosController extends Controller
             ],
             'form_params' => $inputs_validated
         ])->getBody()->getContents(), true);
-            
+
         return redirect()->route('lancamento.show', ['loja_uuid' => $inputs_validated['loja'], 'lancamento_uuid' => $lancamento_uuid]);
     }
 

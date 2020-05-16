@@ -9,3 +9,26 @@
 .loja-link{
     width: 10%; margin: 5px 0px 0px 10px;
 }
+
+.itens-pesquisa{
+    display: flex;
+    width: 100%;
+}
+
+.input-pesquisa{
+    display: flex;
+}
+
+.inputs-pesquisa{
+    display: flex;
+    margin-left: 20px;
+}
+
+.inputs-data{
+    display: flex;
+    width: 50%;
+}
+
+.button-pesquisa{
+    margin-left: 15px;
+}

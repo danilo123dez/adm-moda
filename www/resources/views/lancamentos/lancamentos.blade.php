@@ -7,6 +7,47 @@
 </div>
 <div class="card">
     <div class="card-body">
+        <form action="{{ route('lancamentos.search') }}" method="POST" class="js--form-lancamento-pesquisa">
+            @csrf
+            <div class="itens-pesquisa">
+                <div class="input-pesquisa">
+                    <label style="white-space: nowrap;">Tipo Pesquisa</label> &nbsp;
+                    <select class="form-control js--tipo-pesquisa" name="tipo_pesquisa" style="width: 30%;">
+                        @foreach($tipos_pesquisa as $index => $pesquisa)
+                            <option {{ !empty($arr_pesquisa['tipo_pesquisa']) && $arr_pesquisa['tipo_pesquisa'] === $index ? 'selected' : '' }} value="{{ $index }}">{{ $pesquisa }}</option>
+                        @endforeach
+                    </select>
+                    <div class="js--pesquisa-texto inputs-pesquisa">
+                        <label tyle="white-space: nowrap;">Pesquisa:</label>&nbsp;
+                        <input style="width: 50%;" value="{{ !empty($arr_pesquisa['pesquisa_texto']) ? $arr_pesquisa['pesquisa_texto'] : '' }}" class="form-control js--input-pesquisa-texto" name="pesquisa_texto" type="text">
+                    </div>
+                    <div class="js--pesquisa-data inputs-pesquisa">
+                        <div class="inputs-data">
+                            <label tyle="white-space: nowrap;">Data de início:</label>&nbsp;
+                            <input style="width: 43%;" value="{{ !empty($arr_pesquisa['pesquisa_data_inicio']) ? $arr_pesquisa['pesquisa_data_inicio'] : '' }}" class="form-control js--pesquisa-data-inicio" name="pesquisa_data_inicio" type="text">
+                        </div>
+                        <div class="inputs-data">
+                            <label tyle="white-space: nowrap;">Data de fim:</label>&nbsp;
+                            <input style="width: 43%;" value="{{ !empty($arr_pesquisa['pesquisa_data_fim']) ? $arr_pesquisa['pesquisa_data_fim'] : '' }}" class="form-control js--pesquisa-data-fim" name="pesquisa_data_fim" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <span>
+                        Mostrar Lançamentos Vencidos
+                    </span>
+                    <div>
+                        <input type="radio" name="exibe_lancamento_vencido" value="S" {{ !empty($arr_pesquisa['exibe_lancamento_vencido']) && $arr_pesquisa['exibe_lancamento_vencido'] === 'S' ? 'checked' : '' }}>
+                        <span>Sim</span>
+
+                        <input type="radio" name="exibe_lancamento_vencido" value="N" {{ !isset($arr_pesquisa['exibe_lancamento_vencido']) || $arr_pesquisa['exibe_lancamento_vencido'] === 'N' ? 'checked' : '' }}>
+                        <span>Não</span>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary button-pesquisa"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
         <div class="table-responsive">
             <table class="table table-default js--lancamentos-index-table">
                 <thead>
@@ -38,13 +79,25 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+            <div class="info-lancamento">
+                    <div class="botao-imprimir">
+                        <button type="submit" class="btn btn-primary imprimir-lancamento js--imprimir-lancamentos">Imprimir</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 <input type="hidden" class="token" value="{{csrf_token()}}">
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/js/build/jquery.datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/lancamentos/lancamentos.css') }}">
+@endsection
+
 @section('js')
+    <script type="text/javascript" src="{{ asset('/js/build/jquery.datetimepicker.full.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="{{ asset('/js/lancamentos/lancamentos.js') }}"></script>
 @endsection
