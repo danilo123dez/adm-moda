@@ -7,3 +7,21 @@
     justify-content: flex-end;
     margin-bottom: 35px;
 }
+
+.acoes-lancamentos{
+    display: flex;justify-content: space-evenly;
+}
+
+.info-lancamento{
+    display: flex;
+    justify-content: space-between;
+}
+
+.imprimir-lancamento{
+    vertical-align: text-top;
+}
+
+.info-faturamento{
+    display: flex;
+    flex-direction: column;
+}

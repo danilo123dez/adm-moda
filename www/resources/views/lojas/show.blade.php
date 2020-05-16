@@ -47,7 +47,7 @@
                     <th>Ações</th>
                 </thead>
                 <tbody>
-                    
+
                     @foreach($loja['lancamentos'] as $lancamento)
                         <tr>
                             <td>{{$lancamento['boleta']}}</td>
@@ -56,7 +56,7 @@
                             <td>{{$lancamento['data_compra']}}</td>
                             <td>{{$lancamento['data_vencimento']}}</td>
                             <td>R$ {{number_format($lancamento['valor'],2,",",".")}}</td>
-                            <td style="display: flex;justify-content: space-evenly;">
+                            <td class="acoes-lancamentos">
                                 <a href="{{ route('lancamento.show', ['loja_uuid' => $loja['loja']['uuid'],'lancamento_uuid' => $lancamento['uuid']])}}"><i class="fas fa-edit"></i></a>
                                 <a href="" class="js--lancamento-delete" data-link-delete="{{ route('lancamento.delete', ['loja_uuid' => $loja['loja']['uuid'], 'lancamento_uuid' => $lancamento['uuid'] ]) }}"> <i class="fas fa-trash-alt"></i> </a>
                             </td>
