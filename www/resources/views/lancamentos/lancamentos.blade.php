@@ -6,6 +6,9 @@
     <a href="{{route('lancamentos.viewnew')}}" class="btn btn-primary">Cadastrar Novo Lançamento</a>
 </div>
 <div class="card">
+    <div class="card-header">
+        <h3>Lançamentos</h3>
+    </div>
     <div class="card-body">
         <form action="{{ route('lancamentos.search') }}" method="POST" class="js--form-lancamento-pesquisa">
             @csrf

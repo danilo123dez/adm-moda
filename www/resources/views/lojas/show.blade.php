@@ -3,6 +3,9 @@
 
 @section('content')
 <div class="card">
+    <div class="card-header">
+        <h3>Loja</h3>
+    </div>
     <div class="card-body">
         <form class="needs-validation" action="{{route('loja.update', ['loja_uuid' => $loja['loja']['uuid'] ])}}"  method="POST">
             @method('PUT')

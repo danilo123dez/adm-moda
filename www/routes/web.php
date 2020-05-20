@@ -22,6 +22,11 @@ Route::get('/sair', function(){
     return redirect()->route('login.index');
 });
 
+Route::get('/esqueci-minha-senha', 'MailController@forgetPassword')->name('view.mail.pass');
+Route::post('/esqueci-minha-senha', 'MailController@sendMailPassword')->name('send.mail.pass');
+Route::get('/recuperar-senha/{customer_uuid}', 'MailController@viewRecoverPassword')->name('view.recover.pass');
+Route::post('/recuperar-senha/{customer_uuid}', 'MailController@recoverPassword')->name('recover.pass');
+
 Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCredentials.Lancamento', 'checkCredentials.Customer']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
@@ -33,7 +38,9 @@ Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCre
     });
 
     Route::group(['prefix' => 'administradores'], function () {
-        Route::get('/', 'AdminController@index');
+        Route::get('/', 'AdminController@index')->name('admin.index');
+        Route::get('/novo-admin', 'AdminController@viewNew')->name('novo.admin');
+        Route::post('/novo-admin', 'AdminController@store')->name('novo.admin.store');
     });
 
     Route::group(['prefix' => 'lojas'], function () {

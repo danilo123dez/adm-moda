@@ -6,6 +6,9 @@
     <a href="{{route('lojas.viewnew')}}" class="btn btn-primary">Cadastrar Nova Loja</a>
 </div>
 <div class="card">
+    <div class="card-header">
+        <h3>Lojas</h3>
+    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-default js--lojas-index-table">
