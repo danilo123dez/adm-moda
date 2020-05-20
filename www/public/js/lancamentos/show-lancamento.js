@@ -1,15 +1,15 @@
 (function(){
-    $('#data_compra_store').datetimepicker({
-        format: 'd/m/Y',
+    $('#data_compra_store').datepicker({
+        format: 'dd/mm/yyyy',
         timepicker: false,
         autoclose: true
-    });
+    }).on('changeDate', checkDate);
 
-    $('#data_vencimento_store').datetimepicker({
-        format: 'd/m/Y',
+    $('#data_vencimento_store').datepicker({
+        format: 'dd/mm/yyyy',
         timepicker: false,
         autoclose: true
-    });
+    }).on('changeDate', checkDate);
 
     $('#lojas-disponiveis').select2();
 

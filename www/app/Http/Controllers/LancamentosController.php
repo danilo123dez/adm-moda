@@ -87,6 +87,11 @@ class LancamentosController extends Controller
             'form_params' => $inputs_validated
         ])->getBody()->getContents(), true);
 
+        if($store_lancamento['error'] === 1){
+            session()->flash('error', $store_lancamento['description']);
+            return $this->viewNew();
+        }
+
         return redirect()->route('lancamento.show', ['loja_uuid' => $uuid_loja, 'lancamento_uuid' => $store_lancamento['data']]);
     }
 
@@ -105,6 +110,10 @@ class LancamentosController extends Controller
                 'Accept' => 'application/json'
                 ]
         ])->getBody()->getContents(), true);
+
+        if($lancamento['error'] === 1 && $lancamento['code'] === 'store_not_found'){
+            return view('errors.404', ['message' => 'Loja não encontrada']);
+        }
 
         return view('lancamentos.show', ['lancamento' => $lancamento['data'], 'lojas' => $lojas['data']]);
     }
@@ -125,6 +134,11 @@ class LancamentosController extends Controller
             ],
             'form_params' => $inputs_validated
         ])->getBody()->getContents(), true);
+
+        if($lancamento['error'] === 1){
+            session()->flash('error', $lancamento['description']);
+            return redirect()->route('lancamento.show', ['loja_uuid' => $inputs_validated['loja'], 'lancamento_uuid' => $lancamento_uuid]);
+        }
 
         return redirect()->route('lancamento.show', ['loja_uuid' => $inputs_validated['loja'], 'lancamento_uuid' => $lancamento_uuid]);
     }

@@ -10,6 +10,22 @@
         <form class="needs-validation" action="{{route('lancamento.update', ['loja_uuid' => $lancamento['loja_uuid'], 'lancamento_uuid' => $lancamento['uuid']])}}" method="POST">
             @method('put')
             @csrf
+            @if(session()->has('error'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ session()->get('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Boleta</label>
@@ -23,11 +39,11 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Data de Compra</label>
-                    <input type="text" class="form-control" id="data_compra_store" placeholder="Data da Compra" name="data_compra" value="{{$lancamento['data_compra']}}" required>
+                    <input type="text" class="form-control" id="data_compra_store" readonly placeholder="Data da Compra" name="data_compra" value="{{$lancamento['data_compra']}}" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Data de Vencimento</label>
-                    <input type="text" class="form-control" id="data_vencimento_store" placeholder="Data de vencimento" name="data_vencimento" value="{{$lancamento['data_vencimento']}}" required>
+                    <input type="text" class="form-control" id="data_vencimento_store" readonly placeholder="Data de vencimento" name="data_vencimento" value="{{$lancamento['data_vencimento']}}" required>
                 </div>
             </div>
             <div class="form-row">
@@ -38,6 +54,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Comissão</label>
                     <input type="text" disabled class="form-control" placeholder="Comissão" value="R${{number_format($lancamento['valor'] * ($lancamento['loja_comissao']/100),2,",",".")}}" required>
+
                 </div>
             </div>
             <div class="form-row">
@@ -69,12 +86,12 @@
 
 @endsection
 @section('css')
-    <link rel="stylesheet" href="{{ asset('/js/build/jquery.datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="{{ asset('/css/lancamentos/lancamentos.css') }}">
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="{{ asset('/js/build/jquery.datetimepicker.full.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="{{ asset('/js/build/mask-money.js') }}"></script>
-    <script src="{{ asset('/js/lancamentos/novo-lancamento.js') }}"></script>
+    <script src="{{ asset('/js/lancamentos/show-lancamento.js') }}"></script>
 @endsection

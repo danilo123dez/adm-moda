@@ -37,6 +37,11 @@ class LojasController extends Controller
             'form_params' => $request->validated()
         ])->getBody()->getContents(), true);
 
+        if($loja['error'] === 1){
+            session()->flash('error', $loja['description']);
+            return view('lojas.nova-loja');
+        }
+
         return redirect()->route('loja.show', ['loja_uuid' => $loja['data']]);
     }
 
@@ -48,7 +53,9 @@ class LojasController extends Controller
                 'Accept' => 'application/json'
                 ]
         ])->getBody()->getContents(), true);
-
+        if($loja['error'] === 1 && $loja['code'] === 'store_not_found'){
+            return view('errors.404', ['message' => 'Loja não encontrada']);
+        }
         return view('lojas.show', ['loja' => $loja['data']]);
     }
 
@@ -61,6 +68,11 @@ class LojasController extends Controller
             ],
             'form_params' => $request->validated()
         ])->getBody()->getContents(), true);
+
+        if($loja['error'] === 1){
+            session()->flash('error', $loja['description']);
+            return redirect()->route('loja.show', ['loja_uuid' => $loja_uuid]);
+        }
 
         return redirect()->route('loja.show', ['loja_uuid' => $loja_uuid]);
     }

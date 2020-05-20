@@ -4,7 +4,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h1> Esta página não existe 😔 </h1>
+            <h1> {{ !empty($message) ? $message : 'Esta página não existe' }} 😔 </h1>
         </div>
     </div>
 @endsection
