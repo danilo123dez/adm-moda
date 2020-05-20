@@ -11,12 +11,15 @@ class CustomerController extends Controller
     use RequestTrait;
 
     public function index(){
-        $info_conta = Session::get('customer');
-        return view('minha-conta.minha-conta', ['info_conta' => $info_conta]);
+
+        $customer = json_decode($this->guzzle->request('GET', 'customer', [
+            'query' => ['uuid' => Session::get('customer')['uuid']]
+        ])->getBody()->getContents(), true);
+
+        return view('minha-conta.minha-conta', ['info_conta' => $customer['data']]);
     }
 
     public function update($customer_uuid, CustomerUpdateRequest $request){
-
         $customer = json_decode($this->guzzle->request('PUT',"customers/$customer_uuid", [
             'headers' => [
                 'Authorization' => "Bearer " . Session::get('access_token_customer'),

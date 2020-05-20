@@ -32,7 +32,8 @@ class LancamentosController extends Controller
             'data_vencimento' => 'Data de vencimento'
         ];
 
-        if(!empty($arr_pesquisa['download']) && $arr_pesquisa['download'] && !empty($lancamentos['data'])){
+        if(!empty($arr_pesquisa['download']) && $arr_pesquisa['download'] && !empty($lancamentos['data']
+        )){
             $data = [];
             $data['lancamentos'] = $lancamentos['data'];
             $data['nome_empresa'] = Session::get('customer')['nome_empresa'];

@@ -3,6 +3,9 @@
 
 @section('content')
 <div class="card">
+    <div class="card-header">
+        <h3>Nova Loja</h3>
+    </div>
     <div class="card-body">
         <form class="needs-validation" method="POST">
             @csrf

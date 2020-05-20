@@ -54,6 +54,14 @@
                             </button>
                         </div>
                     @endif
+                    @if(session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ session()->get('error') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     {{-- error_login --}}
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
@@ -90,7 +98,7 @@
                     </div>
                 </form>
                 <p class="mt-2 mb-1">
-                    <a href="{{ $password_reset_url }}">
+                    <a href="/esqueci-minha-senha">
                         Esqueci minha senha
                     </a>
                 </p>

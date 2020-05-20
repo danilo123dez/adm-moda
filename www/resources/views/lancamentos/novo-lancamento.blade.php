@@ -3,6 +3,9 @@
 
 @section('content')
 <div class="card">
+    <div class="card-header">
+        <h3>Novo Lançamento</h3>
+    </div>
     <div class="card-body">
         <form class="needs-validation" action="{{route('lancamentos.store')}}" method="POST">
             @csrf

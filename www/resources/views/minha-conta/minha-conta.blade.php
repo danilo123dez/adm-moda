@@ -1,6 +1,6 @@
 
 @extends('adminlte::page')
-@section('title', 'Home - Admin Moda')
+@section('title', 'Minha Conta - Admin Moda')
 
 @section('content')
 <div class="card">
@@ -31,8 +31,8 @@
 
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="validationCustom03">Nome da Empresa</label>
-                    <input type="text" class="form-control" placeholder="Nome da Empresa" name="nome_empresa" required value="{{ $info_conta['nome_empresa'] }}">
+                    <label for="validationCustom03">Telefone</label>
+                    <input type="text" class="form-control" placeholder="Telefone" name="numero" required value="{{ $info_conta['numero'] }}">
                 </div>
             </div>
 
