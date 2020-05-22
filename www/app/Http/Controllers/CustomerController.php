@@ -20,12 +20,20 @@ class CustomerController extends Controller
     }
 
     public function update($customer_uuid, CustomerUpdateRequest $request){
+        $validated = $request->validated();
+        $validated['cpf'] = str_replace('.', '', $validated['cpf']);
+        $validated['cpf'] = str_replace('-', '', $validated['cpf']);
+        $validated['numero'] = str_replace('(', '', $validated['numero']);
+        $validated['numero'] = str_replace(')', '', $validated['numero']);
+        $validated['numero'] = str_replace(' ', '', $validated['numero']);
+        $validated['numero'] = str_replace('-', '', $validated['numero']);
+
         $customer = json_decode($this->guzzle->request('PUT',"customers/$customer_uuid", [
             'headers' => [
                 'Authorization' => "Bearer " . Session::get('access_token_customer'),
                 'Accept' => 'application/json'
             ],
-            'form_params' => $request->validated()
+            'form_params' => $validated
         ])->getBody()->getContents(), true);
 
         Session::put('customer', $customer['data']);

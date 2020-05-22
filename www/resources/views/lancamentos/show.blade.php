@@ -29,11 +29,11 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Boleta</label>
-                    <input type="text" class="form-control" placeholder="Boleta" name="boleta" value="{{$lancamento['boleta']}}" required>
+                    <input type="number" min="1" max="999999999" class="form-control" placeholder="Boleta" name="boleta" value="{{$lancamento['boleta']}}" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Romaneio</label>
-                    <input type="text" class="form-control" placeholder="Romaneio" name="romaneio" value="{{$lancamento['romaneio']}}" required>
+                    <input type="number" min="1" max="999999999" class="form-control" placeholder="Romaneio" name="romaneio" value="{{$lancamento['romaneio']}}" required>
                 </div>
             </div>
             <div class="form-row">

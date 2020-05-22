@@ -14,28 +14,28 @@
             @csrf
             <div class="itens-pesquisa">
                 <div class="input-pesquisa">
-                    <label style="white-space: nowrap;">Tipo Pesquisa</label> &nbsp;
-                    <select class="form-control js--tipo-pesquisa" name="tipo_pesquisa" style="width: 30%;">
+                    <label class="label-inputs-lancamentos">Tipo Pesquisa</label> &nbsp;
+                    <select class="form-control js--tipo-pesquisa select-lancamentos" name="tipo_pesquisa">
                         @foreach($tipos_pesquisa as $index => $pesquisa)
                             <option {{ !empty($arr_pesquisa['tipo_pesquisa']) && $arr_pesquisa['tipo_pesquisa'] === $index ? 'selected' : '' }} value="{{ $index }}">{{ $pesquisa }}</option>
                         @endforeach
                     </select>
                     <div class="js--pesquisa-texto inputs-pesquisa">
-                        <label tyle="white-space: nowrap;">Pesquisa:</label>&nbsp;
-                        <input style="width: 50%;" value="{{ !empty($arr_pesquisa['pesquisa_texto']) ? $arr_pesquisa['pesquisa_texto'] : '' }}" class="form-control js--input-pesquisa-texto" name="pesquisa_texto" type="text">
+                        <label class="label-inputs-lancamentos">Pesquisa:</label>&nbsp;
+                        <input value="{{ !empty($arr_pesquisa['pesquisa_texto']) ? $arr_pesquisa['pesquisa_texto'] : '' }}" class="form-control js--input-pesquisa-texto input-pesquisa-lancamentos" name="pesquisa_texto" type="text">
                     </div>
                     <div class="js--pesquisa-data inputs-pesquisa">
                         <div class="inputs-data">
-                            <label tyle="white-space: nowrap;">Data de início:</label>&nbsp;
-                            <input style="width: 43%;" value="{{ !empty($arr_pesquisa['pesquisa_data_inicio']) ? $arr_pesquisa['pesquisa_data_inicio'] : '' }}" class="form-control js--pesquisa-data-inicio" name="pesquisa_data_inicio" type="text">
+                            <label class="label-inputs-lancamentos">Data de início:</label>&nbsp;
+                            <input value="{{ !empty($arr_pesquisa['pesquisa_data_inicio']) ? $arr_pesquisa['pesquisa_data_inicio'] : '' }}" class="form-control js--pesquisa-data-inicio input-pesquisa-data-lancamento" name="pesquisa_data_inicio" type="text">
                         </div>
                         <div class="inputs-data">
-                            <label tyle="white-space: nowrap;">Data de fim:</label>&nbsp;
-                            <input style="width: 43%;" value="{{ !empty($arr_pesquisa['pesquisa_data_fim']) ? $arr_pesquisa['pesquisa_data_fim'] : '' }}" class="form-control js--pesquisa-data-fim" name="pesquisa_data_fim" type="text">
+                            <label class="label-inputs-lancamentos">Data de fim:</label>&nbsp;
+                            <input value="{{ !empty($arr_pesquisa['pesquisa_data_fim']) ? $arr_pesquisa['pesquisa_data_fim'] : '' }}" class="form-control js--pesquisa-data-fim input-pesquisa-data-lancamento" name="pesquisa_data_fim" type="text">
                         </div>
                     </div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
+                <div class="lancamentos-vencidos">
                     <span>
                         Mostrar Lançamentos Vencidos
                     </span>
@@ -82,12 +82,12 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
             <div class="info-lancamento">
                     <div class="botao-imprimir">
                         <button type="submit" class="btn btn-primary imprimir-lancamento js--imprimir-lancamentos">Imprimir</button>
                     </div>
                 </div>
-            </div>
         </form>
     </div>
 </div>

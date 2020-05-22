@@ -249,6 +249,11 @@ return [
             'url'  => 'administradores',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        [
+            'text' => 'Empresa',
+            'url'  => 'empresa',
+            'icon' => 'fas fa-fw fa-briefcase',
+        ],
 /*         [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',

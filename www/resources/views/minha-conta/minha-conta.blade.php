@@ -25,14 +25,14 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">CPF</label>
-                    <input type="text" class="form-control" placeholder="CPF" name="cpf" required value="{{ $info_conta['cpf'] }}">
+                    <input type="text" class="form-control js--cpf" placeholder="CPF" name="cpf" required value="{{ $info_conta['cpf'] }}">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Telefone</label>
-                    <input type="text" class="form-control" placeholder="Telefone" name="numero" required value="{{ $info_conta['numero'] }}">
+                    <input type="text" class="form-control js--telefone" placeholder="Telefone" name="numero" required value="{{ $info_conta['numero'] }}">
                 </div>
             </div>
 
@@ -40,4 +40,9 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script src="{{ asset('/js/build/jquery.mask.js') }}"></script>
+    <script src="{{ asset('/js/minha-conta.js') }}"></script>
 @endsection

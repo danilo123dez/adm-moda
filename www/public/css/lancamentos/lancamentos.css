@@ -32,3 +32,58 @@
 .button-pesquisa{
     margin-left: 15px;
 }
+
+.label-inputs-lancamentos{
+    white-space: nowrap;
+}
+
+.input-pesquisa .select-lancamentos{
+    width: 30%;
+}
+
+.inputs-pesquisa .input-pesquisa-lancamentos{
+    width: 50%;
+}
+
+.inputs-pesquisa .input-pesquisa-data-lancamento{
+    width: 43%;
+}
+
+.lancamentos-vencidos{
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 640px) {
+    .itens-pesquisa{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-pesquisa{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-pesquisa .select-lancamentos{
+        width: 100%;
+    }
+
+    .inputs-pesquisa{
+        flex-direction: column;
+        margin-left: 0px;
+    }
+
+    .inputs-pesquisa .input-pesquisa-lancamentos{
+        width: 100%;
+    }
+
+    .lancamentos-vencidos{
+        text-align: center;
+    }
+    .button-pesquisa {
+        margin-left: 0px;
+    }
+}

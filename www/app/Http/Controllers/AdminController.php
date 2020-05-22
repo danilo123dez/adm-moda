@@ -30,6 +30,13 @@ class AdminController extends Controller
         try{
             $inputs_validated = $request->validated();
             $inputs_validated['customer_uuid'] = Session::get('customer')['uuid'];
+            $inputs_validated['cpf'] = str_replace('.', '', $inputs_validated['cpf']);
+            $inputs_validated['cpf'] = str_replace('-', '', $inputs_validated['cpf']);
+            $inputs_validated['numero'] = str_replace('(', '', $inputs_validated['numero']);
+            $inputs_validated['numero'] = str_replace(')', '', $inputs_validated['numero']);
+            $inputs_validated['numero'] = str_replace(' ', '', $inputs_validated['numero']);
+            $inputs_validated['numero'] = str_replace('-', '', $inputs_validated['numero']);
+
             $customer = json_decode($this->guzzle->request('POST',"customers/", [
                 'headers' => [
                     'Authorization' => "Bearer " . Session::get('access_token_customer'),

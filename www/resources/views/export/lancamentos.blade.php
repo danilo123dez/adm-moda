@@ -19,12 +19,19 @@
                 @foreach($data['admins'] as $adm)
                     <tr>
                         <td colspan="2"></td>
-                        <td style="height: 24px;font-size: 24px;font-family: 'Times New Roman';"> <i> {{ $adm['nome'] }} </i></td>
+                        <td style="height: 24px;font-size: 24px;font-family: 'Times New Roman';"> <i> {{ $adm['nome'] }} - {{ $adm['numero'] }}</i></td>
                     </tr>
                     <tr>
                         <td colspan="3"></td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td colspan="2"></td>
+                    <td style="height: 24px;font-size: 24px;font-family: 'Times New Roman';"> {{ $data['empresa']['email_empresa'] }} </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
             </tbody>
         </table>
 
