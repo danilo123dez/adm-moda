@@ -8,6 +8,22 @@
         <form action="{{ route('minha.conta.update', ['customer_uuid' => $info_conta['uuid']]) }}" method="POST">
             @csrf
             @method('PUT')
+            @if(session()->has('error'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ session()->get('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom03">Nome</label>

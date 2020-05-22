@@ -36,6 +36,11 @@ class CustomerController extends Controller
             'form_params' => $validated
         ])->getBody()->getContents(), true);
 
+        if($customer['error'] === 1){
+            session()->flash('error', $customer['description']);
+            return redirect()->route('minha.conta.index');
+        }
+
         Session::put('customer', $customer['data']);
         return redirect()->route('minha.conta.index');
     }
