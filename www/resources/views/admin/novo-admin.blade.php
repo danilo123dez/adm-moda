@@ -37,7 +37,7 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label>CPF</label>
-                    <input type="text" class="form-control" name="cpf" placeholder="CPF" value="{{ old('cpf') }}" required>
+                    <input type="text" class="form-control js--cpf" name="cpf" placeholder="CPF" value="{{ old('cpf') }}" required>
                 </div>
             </div>
             <div class="form-row">
@@ -49,7 +49,7 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label>Telefone</label>
-                    <input type="text" class="form-control" name="numero" placeholder="Telefone" value="{{ old('numero') }}" required>
+                    <input type="text" class="form-control js--telefone" name="numero" placeholder="Telefone" value="{{ old('numero') }}" required>
                 </div>
             </div>
             <div class="form-row">
@@ -71,6 +71,8 @@
 </div>
 @endsection
 
-@section('adminlte_js')
+@section('js')
+    <script src="{{ asset('/js/build/jquery.mask.js') }}"></script>
     <script src="{{ asset('/js/recuperar-senha.js') }}"></script>
+    <script src="{{ asset('/js/minha-conta.js') }}"></script>
 @stop

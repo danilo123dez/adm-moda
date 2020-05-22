@@ -67,4 +67,9 @@ Route::group(['middleware' => ['auth.custom', 'checkCredentials.Loja', 'checkCre
             });
         });
     });
+
+    Route::group(['prefix' => 'empresa'], function () {
+        Route::get('/', 'EmpresaController@index')->name('empresa.index');
+        Route::put('/', 'EmpresaController@update')->name('empresa.update');
+    });
 });

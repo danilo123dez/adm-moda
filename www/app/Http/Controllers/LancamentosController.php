@@ -46,6 +46,15 @@ class LancamentosController extends Controller
             ])->getBody()->getContents(), true);
             $data['admins'] = $admins['data'];
 
+            $empresa = json_decode($this->guzzle->request('GET',"enterprise/$customer_uuid", [
+                'headers' => [
+                    'Authorization' => "Bearer " . Session::get('access_token_customer'),
+                    'Accept' => 'application/json'
+                ]
+            ])->getBody()->getContents(), true);
+
+            $data['empresa'] = $empresa['data'];
+
             return Excel::download(new LancamentosExport($data), 'relatorio-'.date('m-Y').'.xlsx');
         }
 
